@@ -1,0 +1,56 @@
+title: &title My Awesome Project
+version: &version 1.0
+
+chapters:
+    - index.md
+
+backend_config:
+    pandoc:
+        # template: !path /foliant_stuff/pandoc_templates/tex_templates/rostelecom.tex
+        # reference_docx: !path /foliant_stuff/pandoc_templates/docx_references/rit.docx
+        vars:
+            title: *title
+            version: *version
+            subtitle: Description Of My Awesome Project
+            logo: !path /foliant_stuff/pandoc_templates/logos/rit.png
+            year: 2022
+            date: true
+            russian: true
+            english: false
+            title_page: true
+            toc: true
+            tof: true
+        params:
+            pdf_engine: xelatex
+            listings: true
+    mkdocs:
+        use_title: true
+        use_chapters: true
+        use_headings: true
+        mkdocs.yml:
+            theme:
+                name: material
+                custom_dir: !path /foliant_stuff/mkdocs_themes/itv_docs_site_material
+                palette:
+                    primary: indigo
+                    accent: deep orange
+                logo: assets/images/rit.png
+                favicon: assets/images/favicon.png
+            extra:
+                search:
+                    language: 'en, ru'
+            extra_css:
+                - assets/stylesheets/extra.css
+            markdown_extensions:
+                - def_list
+                - footnotes
+                - codehilite
+                - sane_lists
+                - smarty
+                - toc:
+                        permalink: True
+                        slugify: !!python/name:pymdownx.slugs.uslugify
+                - admonition
+    slate:
+        shards:
+            - !path /foliant_stuff/slate_shards/basic
