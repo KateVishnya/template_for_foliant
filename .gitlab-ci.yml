@@ -1,0 +1,19 @@
+variables:
+    GIT_STRATEGY: none
+
+stages:
+  - update_template
+  
+update_template:
+  stage: update_template
+  script:
+      - if [ "${name_project}" == "test" ];
+        then echo "Project A push events";
+      fi
+      - git reset --soft HEAD~2
+      - git commit -m "Обновление шаблона"
+      - git push origin +main
+
+
+
+   
